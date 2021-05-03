@@ -269,5 +269,102 @@ app.post("/API/ChangeDocumentName", urlencodedParser, async (req, res) => {
     }
 });
 
+
+
+//concurrent editing via websocket garbage
+let WebSocket = require("ws");
+
+class Session{
+    constructor(documentID, websocket){
+        this.id = documentID;
+        this.users = [websocket];
+        this.documentHistory = [];
+    }
+}
+
+//dictionary of sessions indexed by document ID
+//This is NOT the same as user sessions managed by express
+let sessions = {};
+
+//=============== Application State =========================
+const wss = new WebSocket.Server({port: 8000}); //The websocket Server
+
+init();
+
+//Initilization function, run at startup
+function init(){
+    wss.on('connection', onConnection);
+}
+
+function onConnection(websocket, request){
+    try{
+        let connectionParams = new URL("http://test.com" + request.url).searchParams;
+        let documentId = connectionParams.get("doc");
+        //let user = connectionParams.get("doc");
+        if(sessions[documentId] == undefined)   //if the user has yet to connect
+            sessions[documentId] = new Session(documentId, websocket)
+        else{ //someone is already connected, we add ourselves to the session
+            sessions[documentId].users.push(websocket);
+            Doc.findById(documentId, function (err, doc){
+                if(err){
+                    console.log(err);
+                    return;
+                }
+                let loadMessage = {
+                    id: 0,
+                    type: "load",
+                    edits: doc.edits
+                }
+                websocket.send(JSON.stringify(loadMessage));
+            });
+        }
+        let thisSession = sessions[documentId];
+        websocket.on('message', message=>onMessage(websocket, message, thisSession));
+        websocket.on('close', (code,reason)=>onClose(thisSession));
+        
+        console.log("connection sucsessful");
+    }catch(e){
+        console.log(e);
+    }
+}
+
+function onMessage(websocket, message, session){
+    let messageObject = JSON.parse(message);
+    try{
+        dispatch(messageObject, session);
+    }catch(e){
+        console.log(e);
+        websocket.send(JSON.stringify({"id": messageObject.id, "error":e.message}));
+    }
+}
+
+function dispatch(messageObject, session){
+    console.log(messageObject);
+    switch(messageObject.type){
+        case "edit":   //just forwards it to all connections
+            console.log(session.id);
+            Doc.findById(session.id, function (err, doc) {
+                if(err){
+                    console.log(err);
+                    return;
+                }
+                doc.edits.push(messageObject.msg);
+                doc.save();
+            });
+            //session.documentHistory.push(messageObject.msg)
+            for(let user of session.users)
+                user.send(JSON.stringify(messageObject));
+            break;
+        default:
+            throw new Error("Invalid message type");
+    }
+}
+
+//This should eventually kick people out of sessions
+function onClose(thisSession){
+
+}
+
+
 // Server listening on PORT
 server.listen(PORT, () => console.log(chalk.bold(`Server started on `) + chalk.green.bold.underline(`https://localhost:${PORT}`)))

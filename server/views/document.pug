@@ -1,5 +1,9 @@
 include includes/header.pug
 
+
+script(src="./js/crypto.js")
+script(src="./js/concurrentEditing.js")
+
 div(class="container-fluid")
     div(class="row" id="loginregister" style="margin-top: -50px")
         div(class="col ten")
@@ -8,7 +12,7 @@ div(class="container-fluid")
                     h1(class="document-title")=document.name
                     h1(class="document-author")=document.author[0].name
                     h1(class="document-settings" onclick="toggleModal(event, 'documentSettings');") Settings
-                textarea(class="document")
+                textarea(id="editArea" class="document" oninput="onEdit(this)")
     div.modal(id="documentSettings")
         div.modal-exit(onclick="toggleModal(event, 'documentSettings');")
         div.modal-container
