@@ -1,0 +1,41 @@
+include includes/header.pug
+
+div(class="container-fluid")
+    div(class="row" id="loginregister" style="margin-top: -50px")
+        div(class="col ten")
+            div(class="col-container")
+                div(class="document-title-wrapper")
+                    h1(class="document-title")=document.name
+                    h1(class="document-author")=document.author[0].name
+                    h1(class="document-settings" onclick="toggleModal(event, 'documentSettings');") Settings
+                textarea(class="document")
+    div.modal(id="documentSettings")
+        div.modal-exit(onclick="toggleModal(event, 'documentSettings');")
+        div.modal-container
+                    h1 Document Settings
+                    h1(style="font-size: 2em; color: #a0a0a0; margin-top: 20px;") Access
+                    div
+                        each val in document.invites
+                            div(class="dashboard-item")
+                                p(class="dashboard-title")=val
+                                a(href=`/API/RemoveInvite?name=${val}&docId=${document.id}`)
+                                    p(class="dashboard-view") Remove
+                    br
+                    form(class="form" method="POST" action="https://localhost:8080/API/invite")
+                        label(for="invite") Invite New Contributor
+                        input(type="text" class="form" id="invite" name="invite")
+                        input(type="text" class="form" id="docId" name="docId" style="display: none" value=`${document.id}`)
+                        button(type="submit" class="btn-landing" onMouseMove="btnOnMouseMove(event)" onMouseOut="btnOnMouseOut(event)" onMouseOver="btnOnMouseOver(event)" onMouseDown="btnOnClick(event)")
+                            div(class="btn-circle")
+                            p(class="btn-text") Invite
+                    br
+                    br
+                    br
+                    form(class="form" method="POST" action="https://localhost:8080/API/ChangeDocumentName")
+                        h1(style="font-size: 2em; color: #a0a0a0; margin-top: 20px;") Change Name
+                        label(for="username") Document Name
+                        input(type="text" class="form" id="username" name="id" value=`${document.id}` style="display: none;")
+                        input(type="text" class="form" id="username" name="name" value=`${document.name}`)
+                        button(type="submit" class="btn-landing" onMouseMove="btnOnMouseMove(event)" onMouseOut="btnOnMouseOut(event)" onMouseOver="btnOnMouseOver(event)" onMouseDown="btnOnClick(event)")
+                            div(class="btn-circle")
+                            p(class="btn-text") Update Name

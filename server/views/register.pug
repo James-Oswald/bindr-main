@@ -1,0 +1,19 @@
+include includes/header.pug
+
+div(class="container-fluid")
+    div(class="row" id="loginregister")
+        div(class="col six")
+            div(class="col-container")
+                h1 Register
+                form(class="form" method="POST" action="https://localhost:8080/API/register")
+                    label(for="username") Username
+                    input(type="text" class="form" id="username" name="user")
+                    label(for="password") Password
+                    input(type="password" class="form" id="password" name="pw")
+                    label(for="password") Password Again
+                    input(type="password" class="form" id="passwordAgain" name="pwAgain")
+                    p(class='register-msg') Already have an account? 
+                        a(href="/login") Login here.
+                    button(type="submit" class="btn-landing" onMouseMove="btnOnMouseMove(event)" onMouseOut="btnOnMouseOut(event)" onMouseOver="btnOnMouseOver(event)" onMouseDown="btnOnClick(event)")
+                        div(class="btn-circle")
+                        p(class="btn-text") Register

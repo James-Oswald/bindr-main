@@ -1,0 +1,33 @@
+{
+  "name": "bindr",
+  "version": "1.0.0",
+  "description": "bindr is a cross-platform collaborative editing application that allows users to concurrently edit documents together.",
+  "main": "server.js",
+  "scripts": {
+    "sass": "node-sass --watch ./views/scss/ -o ./views/css/",
+    "start": "concurrently \"npm run sass\" \"nodemon server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ethanzs/bindr.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ethanzs/bindr/issues"
+  },
+  "homepage": "https://github.com/ethanzs/bindr#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "chalk": "^4.1.0",
+    "concurrently": "^6.0.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.12.7",
+    "node-sass": "^5.0.0",
+    "nodemon": "^2.0.7",
+    "pug": "^3.0.2"
+  }
+}

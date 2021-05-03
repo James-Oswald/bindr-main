@@ -1,0 +1,649 @@
+/* Bindr CSS/SCSS Framework
+ * Author: Ethan Seligman
+ * Version 1.7
+ */
+
+//~ Imports
+@import "fonts";
+
+//~ Color Variables
+$color: #7d57e8;
+$gray: #1a1a1a;
+$subheader: #fff;
+
+//~ Breakpoints
+$sm: 576px;
+$md: 786px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
+//~ Text Variables
+$font: "Lato", Arial;
+
+//~ Positioning Variables
+$padding: 30px;
+$navHeight: 80px;
+
+//~ Global Styling
+*{
+    padding: 0; margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: $gray;
+}
+
+h1, h2, h3, p, a{
+    font-family: $font;
+    user-select: none;
+}
+
+h1{
+    font-weight: 800;
+    font-size: 2.3em;
+    color: $subheader;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+h2{
+    font-size: 1.8em;
+    color: $color;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+p{
+    color: #a0a0a0;
+    font-size: 1.1em;
+}
+
+//~ Reusable Element Styling
+div.container-fluid{
+    width: 100%;
+    max-width: $xl;
+    position: relative;
+    margin: 0 auto;
+}
+
+div.container{
+    width: $lg;
+    padding: $padding;
+    background: red;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: $lg) {
+    div.container{width: $md}
+}
+
+@media only screen and (max-width: $md) {
+    div.container{width: 100%}
+}
+
+//~ Grid System
+div.row {
+    display: flex;
+    flex-flow: column wrap;
+    flex-direction: row;
+    padding: 0 $padding/2;
+    align-items: stretch;
+    width: 100%;
+    justify-content: center;
+}
+div.col {
+    padding: $padding/2;
+    float: left;
+    box-sizing: border-box;
+}
+div.col-container {
+    width: 100%;
+    height: 100%;
+    background: none;
+    box-sizing: border-box;
+    padding: $padding;
+    border-radius: 5px;
+}
+
+div.col-container h1{
+    font-size: 3em;
+}
+
+@media only screen and (max-width: $md) {
+    $padding: 20px;
+    div.row {
+        padding: 0 $padding/2;
+    }
+    div.col {
+        padding: $padding/2;
+    }
+    div.col-container {
+        padding: $padding*1.7;
+    }
+}
+
+@media only screen and (max-width: $sm) {
+    $padding: 10px;
+    div.row {
+        padding: 0 $padding/2;
+    }
+    div.col {
+        padding: $padding/2;
+    }
+    div.col-container {
+        padding: $padding*1.7;
+    }
+}
+div.col.one {
+    width: calc(1 / 12 * 100%);
+}
+div.col.two {
+    width: calc(2 / 12 * 100%);
+}
+div.col.three {
+    width: calc(3 / 12 * 100%);
+}
+div.col.four {
+    width: calc(4 / 12 * 100%);
+}
+div.col.five {
+    width: calc(5 / 12 * 100%);
+}
+div.col.six {
+    width: calc(6 / 12 * 100%);
+}
+div.col.seven {
+    width: calc(7 / 12 * 100%);
+}
+div.col.eight {
+    width: calc(8 / 12 * 100%);
+}
+div.col.nine {
+    width: calc(9 / 12 * 100%);
+}
+div.col.ten {
+    width: calc(10 / 12 * 100%);
+}
+div.col.eleven {
+    width: calc(11 / 12 * 100%);
+}
+div.col.twelve {
+    width: 100%;
+}
+
+@media only screen and (max-width: $md) {
+    div.col.one {
+        width: calc(1 / 12 * 100%);
+    }
+    div.col.two {
+        width: calc(2 / 12 * 100%);
+    }
+    div.col.three {
+        width: calc(3 / 12 * 100%);
+    }
+    div.col.four {
+        width: calc(4 / 12 * 100%);
+    }
+    div.col.five {
+        width: calc(5 / 12 * 100%);
+    }
+    div.col.six {
+        width: calc(12 / 12 * 100%);
+    }
+    div.col.seven {
+        width: calc(12 / 12 * 100%);
+    }
+    div.col.eight {
+        width: calc(12 / 12 * 100%);
+    }
+    div.col.nine {
+        width: calc(12 / 12 * 100%);
+    }
+    div.col.ten {
+        width: calc(12 / 12 * 100%);
+    }
+    div.col.eleven {
+        width: calc(12 / 12 * 100%);
+    }
+    div.col.twelve {
+        width: 100%;
+    }
+}
+
+//~ Input Styling
+form.form{
+    width: 100%;
+}
+
+input.form{
+    width: 100%;
+    outline: none;
+    border: none;
+    background: none;
+    font-family: $font;
+    font-size: 1em;
+    padding: 10px;
+    margin: 7px 0;
+    font-weight: 500;
+    border: 1px solid #505050;
+    color: #fff;
+    transition: border-color .3s ease;
+    border-radius: 3px;
+}
+
+input.form:hover{
+    border-color: #707070;
+}
+
+input.form:focus{
+    border-color: #a0a0a0;
+}
+
+button.form{
+    width: 100%;
+    outline: none;
+    font-family: $font;
+    font-size: 1em;
+    padding: 9px 0;
+    margin-top: 7px;
+    border: none;
+    background: #fff;
+    color: $color;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .3s ease;
+    border-radius: 3px;
+}
+
+button.form:hover{
+    background: $color;
+    color: #fff;
+}
+
+label{
+    color: #a0a0a0;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
+    position: relative;
+    bottom: -4px;
+}
+
+//~ Navigation
+#nav{
+    position: relative;
+    height: $navHeight; 
+    width: 100vw;
+    padding: 0 $padding;
+    margin-bottom: $padding/2;
+    background: none;
+}
+
+div.nav-divider{
+    width: 100%;
+    height: 1px; 
+    background: url('../imgs/nav-divider.png') no-repeat;
+    background-size: 100%;
+    background-position: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+div.nav-logo{
+    height: $navHeight;
+    width: $navHeight;
+    float: left;
+    background: url('../imgs/logo.png') no-repeat;
+    background-size: 68%; 
+    background-position: center;
+    position: relative;
+}
+
+a.nav-link{
+    color: #c0c0c0;
+    float: right;
+    line-height: $navHeight;
+    margin-left: $padding;
+    font-size: 1em;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.nav-link:hover{
+    color: #fff;
+}
+
+@media only screen and (max-width: $md) {
+    $padding: 20px;
+    #nav{
+        padding: 0 $padding;
+        margin-bottom: $padding/2;
+    }
+    a.nav-link{
+        margin-right: 15px;
+        margin-left: 10px;
+    }
+}
+
+@media only screen and (max-width: $sm) {
+    $padding: 10px;
+    #nav{
+        padding: 0 $padding;
+        margin-bottom: $padding/2;
+    }
+    div.nav-divider{
+        display: none;
+    }
+    a.nav-link{
+        margin-right: 15px;
+        margin-left: 10px;
+    }
+}
+
+//~ Scrollbar
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: none;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #505050;
+    border-radius: 5px;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $color;
+}
+
+//~ Button
+// Buttons ~
+button{
+    font-family: $font;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 13px 32px;
+    background: #fff;
+    font-weight: 600;
+    border-radius: 0px;
+    overflow: hidden;
+    color: $color;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 3px;
+}
+
+button.btn-landing{
+    position: relative;
+    transition: background .5s ease, transform .2s ease;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    background: $color !important;
+    letter-spacing: .5px;;
+}
+
+p.btn-text{
+    position: relative; 
+    z-index: 2;
+    pointer-events: none;
+    color: #fff;
+}
+
+div.btn-circle{
+    height: 90px; 
+    width: 90px; 
+    background: rgba(255,255,255,0.08);
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    top: 0; 
+    left: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: transform .5s ease, opacity .2s ease;
+    transform: scale(1.2);
+}
+
+//
+p.register-msg{
+    font-size: .9em;
+    margin: 5px 0;
+    margin-bottom: 3px;
+}
+
+p.register-msg a{
+    color: $color;
+}
+
+#loginregister{
+    margin-top: 90px;
+}
+
+// HOME
+div.home-wrapper{
+    width: 100vw;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1.home-header{
+    font-size: 12em;
+    color: #fff;
+    letter-spacing: 9px;
+}
+
+h1.home-subheader{
+    font-size: 1.5em;
+    color: #e3e3e3;
+    margin-top: -25px;
+}
+
+div.home-wrapper button{
+    margin-top: 15px;
+}
+
+div.home-background-gradient{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    opacity: .15;
+    background: rgb(125,87,232);
+    background: linear-gradient(90deg, rgba(125,87,232,1) 0%, rgba(239,0,255,1) 100%);
+}
+
+//DASHBOARD
+
+div.dashboard-item{
+    height: 45px;
+    width: 100%;
+    background: #252525;
+    transition: background .1s ease;
+}
+
+div.dashboard-item:nth-child(odd){
+    background: #303030;
+}
+
+div.dashboard-item:first-child{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+div.dashboard-item:last-child{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+p.dashboard-title{
+    line-height: 45px;
+    margin-left: 12px;
+    float: left;
+    color: #cecece;
+    transition: color .1s ease;
+}
+
+p.dashboard-view{
+    line-height: 45px;
+    margin-right: 12px;
+    float: right;
+    cursor: pointer;
+    font-size: .9em;
+    color: $color;
+    transition: color .1s ease;
+    pointer-events: none;
+    opacity: 0;
+}
+
+p.dashboard-author{
+    line-height: 45px;
+    margin-left: 6px;
+    float: left;
+    cursor: pointer;
+    font-size: .9em;
+    color: $color;
+    transition: color .1s ease;
+    pointer-events: none;
+    opacity: 0;
+}
+
+div.dashboard-item:hover{
+    background: $color;
+}
+
+div.dashboard-item:hover p.dashboard-title{
+    color: #fff;
+}
+
+div.dashboard-item:hover p.dashboard-author{
+    color: #b69cff;
+    pointer-events: all;
+    opacity: 1;
+}
+
+div.dashboard-item:hover p.dashboard-view{
+    color: #fff;
+    pointer-events: all;
+    opacity: 1;
+}
+
+div.dashboard-title-wrapper{
+    width: 100%;
+    height: 54px;
+}
+
+h1.dashboard-add{
+    background: $color;
+    font-size: 1.1em;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
+// DOCUMENT
+div.document-title-wrapper{
+    height: 60px;
+    width: 100%;
+}
+
+h1.document-title{
+    float: left;
+    text-align: left;
+    font-size: 2em !important;
+    line-height: 60px;
+}
+
+h1.document-author{
+    float: left;
+    text-align: left;
+    font-size: 1.5em !important;
+    line-height: 66px;
+    margin-left: 12px;
+    color: #505050;
+}
+
+h1.document-settings{
+    text-align: left;
+    float: right;
+    font-size: 1.5em !important;
+    line-height: 66px;
+    color: $color;
+    cursor: pointer;
+}
+
+textarea.document{
+    width: 100%;
+    height: 600px;
+    font-family: $font;
+    font-size: 1.2em;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background: #404040;
+    color: #fff;
+    margin-top: -10px;
+    resize: vertical;
+}
+
+// MODAL
+div.modal{
+    width: 100vw;
+    height: 100vh;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
+
+div.modal-container{
+    width: 600px;
+    padding: 50px;
+    background: #202020;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    transition: top .2s ease;
+    border-radius: 5px;
+}
+
+div.modal-exit{
+    width: 100vw;
+    height: 100vh;
+    position: absolute; 
+    top: 0; left: 0;
+    background: rgba(0,0,0,0.9);
+    cursor: pointer;
+}
+
+.modal-active{
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+.modal-active .modal-container{
+    top: 50%;
+}

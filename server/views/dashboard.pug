@@ -1,0 +1,30 @@
+include includes/header.pug
+
+div(class="container-fluid")
+    div(class="row" id="loginregister")
+        div(class="col ten")
+            div(class="dashboard-title-wrapper")
+                h1(style="text-align: left; margin-bottom: 0px; float: left") Dashboard
+                h1(class="dashboard-add" onclick="toggleModal(event, 'addDocument');" style="text-align: left; margin-bottom: 0px; float: right; color: #fff") New Document +
+            div
+                each val in session.documents
+                    div(class="dashboard-item")
+                        p(class="dashboard-title")=val.name
+                        p(class="dashboard-author")=val.author[0].name
+                        p(class="dashboard-view") settings
+                        a(href=`/document?id=${val.id}`)
+                            p(class="dashboard-view") view
+div.modal(id="addDocument")
+    div.modal-exit(onclick="toggleModal(event, 'addDocument');")
+    div.modal-container
+        form(class="form" method="POST" action="https://localhost:8080/API/AddDocument")
+                h1 Create Document
+                label(for="username") Document Name
+                input(type="text" class="form" id="username" name="name")
+                label(for="password") Password
+                input(type="password" class="form" id="password" name="pw")
+                label(for="password") Password Again
+                input(type="password" class="form" id="passwordAgain" name="pwAgain")
+                button(type="submit" class="btn-landing" onMouseMove="btnOnMouseMove(event)" onMouseOut="btnOnMouseOut(event)" onMouseOver="btnOnMouseOver(event)" onMouseDown="btnOnClick(event)")
+                    div(class="btn-circle")
+                    p(class="btn-text") Create Document

@@ -1,0 +1,10 @@
+include includes/header.pug
+
+div(class="home-background-gradient")
+div(class="home-wrapper")
+    h1(class="home-header") bindr
+    h1(class="home-subheader") A secure & collaborative notepad application
+    a(href="/register")
+        button(type="button" class="btn-landing" onMouseMove="btnOnMouseMove(event)" onMouseOut="btnOnMouseOut(event)" onMouseOver="btnOnMouseOver(event)" onMouseDown="btnOnClick(event)" style="width: 200px;")
+            div(class="btn-circle")
+            p(class="btn-text") Get Started
